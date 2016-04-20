@@ -18,41 +18,36 @@
             <div class="panel panel-inverse" data-sortable-id="table-basic-2">
                 <div class="panel-heading">
                     <h4 class="panel-title">Hover Table</h4>
-                    <a href="<?php echo base_url();?>master_controller/salary_amount" class="pull-right btn btn-success"><i class="fa fa-plus"></i> Add New</a>
+                    <a href="<?php echo base_url();?>master_controller/salary_bonus" class="pull-right btn btn-success"><i class="fa fa-plus"></i> Add New</a>
                 </div>
                 <div class="panel-body">
                     <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>Sl</th>
-                                <th>Employe Name</th>
-                                <th>Year of Salary</th>
-                                <th>Issue Salary Payment</th>
-                                <th>Date Salary Payment</th>
-                                <th>Amount of Salary</th>
+                                <th>Id Salary Payment</th>
+                                <th>Id Salary Bonus</th>
+                                <th>Amount Salary Bonus</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
-                                $sl = 1;
-                                foreach ($salary as $value){
+                            <?php 
+                                $sl=1;
+                                foreach ($salary_bonus as $bonus){
                             ?>
                             <tr>
                                 <td><?php echo $sl;?></td>
-                                <td><?php?></td>
-                                <td><?php echo $value->month_salary_payment;?></td>
-                                <td><?php echo $value->year_salary_payment;?></td>
-                                <td><?php echo $value->issue_salary_payment;?></td>
-                                <td><?php echo $value->date_salary_payment;?></td>
-                                <td><?php echo $value->amount_salary_payment;?></td>
+                                <td><?php echo $bonus->id_salary_payment;?></td>
+                                <td><?php echo $bonus->id_salary_bonus;?></td>
+                                <td><?php echo $bonus->amount_salary_bonus;?></td>
                                 <td>
-                                    <a href="<?php echo base_url();?>master_controller/salary_amount" class="btn btn-warning"><i class="fa fa-edit"></i></a>
-                                    <a href="" class="btn btn-danger"><i class="fa fa-trash"></i></a>
+                                    <a href="<?php echo base_url();?>master_controller/edit_salary_bonus/<?php echo $bonus->id_salary_bonus;?>" class="btn btn-warning"><i class="fa fa-edit"></i></a>
+                                    <a href="<?php echo base_url();?>master_controller/delete_salary_bonus_by_bonus_id/<?php echo $bonus->id_salary_bonus;?>" class="btn btn-danger"><i class="fa fa-trash"></i></a>
                                 </td>
                             </tr>
-                             <?php
-                             $sl++;
+                            <?php
+                            $sl++;
                                 }
                             ?>
                         </tbody>

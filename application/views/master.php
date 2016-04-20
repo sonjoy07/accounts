@@ -2,12 +2,10 @@
 <!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
 <!--[if !IE]><!-->
 <html lang="en">
-    <!--<![endif]-->
-
-    <!-- Mirrored from seantheme.com/color-admin-v1.9/admin/html/index_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Oct 2015 20:58:13 GMT -->
+    <!--<![endif]-->    
     <head>
         <meta charset="utf-8" />
-        <title>Color Admin | Dashboard v2</title>
+        <title><?php echo $title; ?></title>
         <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
         <meta content="" name="description" />
         <meta content="" name="author" />
@@ -35,6 +33,17 @@
 
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="<?php echo base_url(); ?>assets/plugins/pace/pace.min.js"></script>
+        <script type="text/javascript">
+            function check() {
+                var chk = confirm('Are you sure to delete?');
+                if (chk) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+        </script>
 
         <!-- ================== END BASE JS ================== -->
     </head>
@@ -62,73 +71,6 @@
 
                     <!-- begin header navigation right -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li>
-                            <form class="navbar-form full-width">
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Enter keyword" />
-                                    <button type="submit" class="btn btn-search"><i class="fa fa-search"></i></button>
-                                </div>
-                            </form>
-                        </li>
-                        <li class="dropdown">
-                            <a href="javascript:;" data-toggle="dropdown" class="dropdown-toggle f-s-14">
-                                <i class="fa fa-bell-o"></i>
-                                <span class="label">5</span>
-                            </a>
-                            <ul class="dropdown-menu media-list pull-right animated fadeInDown">
-                                <li class="dropdown-header">Notifications (5)</li>
-                                <li class="media">
-                                    <a href="javascript:;">
-                                        <div class="media-left"><i class="fa fa-bug media-object bg-red"></i></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading">Server Error Reports</h6>
-                                            <div class="text-muted f-s-11">3 minutes ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="media">
-                                    <a href="javascript:;">
-                                        <div class="media-left"><img src="<?php echo base_url(); ?>assets/img/user-1.jpg" class="media-object" alt="" /></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading">John Smith</h6>
-                                            <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-                                            <div class="text-muted f-s-11">25 minutes ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="media">
-                                    <a href="javascript:;">
-                                        <div class="media-left"><img src="<?php echo base_url(); ?>assets/img/user-2.jpg" class="media-object" alt="" /></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading">Olivia</h6>
-                                            <p>Quisque pulvinar tellus sit amet sem scelerisque tincidunt.</p>
-                                            <div class="text-muted f-s-11">35 minutes ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="media">
-                                    <a href="javascript:;">
-                                        <div class="media-left"><i class="fa fa-plus media-object bg-green"></i></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading"> New User Registered</h6>
-                                            <div class="text-muted f-s-11">1 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="media">
-                                    <a href="javascript:;">
-                                        <div class="media-left"><i class="fa fa-envelope media-object bg-blue"></i></div>
-                                        <div class="media-body">
-                                            <h6 class="media-heading"> New Email From John</h6>
-                                            <div class="text-muted f-s-11">2 hour ago</div>
-                                        </div>
-                                    </a>
-                                </li>
-                                <li class="dropdown-footer text-center">
-                                    <a href="javascript:;">View more</a>
-                                </li>
-                            </ul>
-                        </li>
                         <li class="dropdown navbar-user">
                             <a href="javascript:;" class="dropdown-toggle" data-toggle="dropdown">
                                 <img src="<?php echo base_url(); ?>assets/img/user-13.jpg" alt="" /> 
@@ -178,9 +120,11 @@
                                 <span>Salary</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="index.html">Salary Payment</a></li>
-                                <li><a href="index_v2.html">Salary Advance</a></li>
-                                <li><a href="index_v2.html">Salary Bonus</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller">Salary Payment</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller/salary_advance_list">Salary Advance</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller/salary_advance_payment_list">Salary Advance Payment</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller/salary_bonus_list">Salary Bonus</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller/salary_bonus_type_list">Salary Bonus Type</a></li>
                             </ul>
                         </li>
                         <li class="has-sub">
@@ -289,6 +233,7 @@
             <!-- end scroll to top btn -->
         </div>
         <!-- end page container -->
+       
 
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
@@ -320,11 +265,16 @@
 
         <script>
             $(document).ready(function () {
+               // var name ="sonjoy";
                 App.init();
-                DashboardV2.init();
+                //DashboardV2.init();
+               
+//               Datepicker
                 $('.datepicker').datepicker();
-
-            });
+                //search payment
+                
+                
+    });
         </script>
         <script>
             (function (i, s, o, g, r, a, m) {
@@ -345,14 +295,18 @@
         <script>
             $('.sidebar ul li a').click(
                     function (e) {
-                        e.preventDefault(); // prevent the default action
-                        e.stopPropagation; // stop the click from bubbling
-                        $(this).closest('ul').find('.active').removeClass('active');
+                        //e.preventDefault(); // prevent the default action
+                        // e.stopPropagation; // stop the click from bubbling
+                        //$(this).closest('ul').find('.active').removeClass('active');
                         $(this).parent().addClass('active');
                     });
+//alert(name);
+                //
+//                    
+//                
+//            });
+        
         </script>
     </body>
-
-    <!-- Mirrored from seantheme.com/color-admin-v1.9/admin/html/index_v2.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 10 Oct 2015 21:00:48 GMT -->
 </html>
 
