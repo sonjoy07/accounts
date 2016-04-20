@@ -31,41 +31,23 @@
                 </div>
                 <div class="panel-body">
                     <form action="<?php echo base_url(); ?>master_controller/update_bonus" method="post" name="bonus" class="form-horizontal">
-                        <div class="form-group">
+<!--                        <div class="form-group">
                             <label class="col-md-3 control-label">Employe Name</label>
-                            <div class="col-md-9">
+                            <div class="col-md-9">-->
                                 <input type="hidden" name="id_salary_bonus" value="<?php echo $bonus->id_salary_bonus;?>" />
-                                <input type="text" id="payment" name="" class="form-control" placeholder="Default input" />
+<!--                                <input type="text" id="payment" name="" class="form-control" placeholder="Default input" />
                             </div>
-                        </div>
+                        </div>-->
                         <div class="form-group">
                             <label class="col-md-3 control-label">Salary payment</label>
                             <div class="col-md-9">
-                                <select name="id_salary_payment" class="form-control">
-                                    <option>Select Salary Payment Id</option>
-                                    <?php
-                                    foreach ($salary_payment as $payment) {
-                                        ?>
-                                        <option value="<?php echo $payment->id_salary_payment; ?>"><?php echo $payment->id_salary_payment; ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
+                               <input type="text" id="payment" name="id_salary_payment" class="form-control" value="<?php echo $bonus->id_salary_payment;?>" />
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="col-md-3 control-label">Salary Bonus Type</label>
                             <div class="col-md-9">
-                                <select name="id_salary_bonus_type" class="form-control">
-                                    <option>Select Bonus Type</option>
-                                    <?php
-                                    foreach ($salary_bonus as $bonus) {
-                                        ?>
-                                        <option value="<?php echo $bonus->id_salary_bonus_type; ?>"><?php echo $bonus->name_salary_bonus_type; ?></option>
-                                        <?php
-                                    }
-                                    ?>
-                                </select>
+                               <input type="text" id="bonus_type" name="id_salary_bonus_type" class="form-control" value="<?php echo $bonus->id_salary_bonus_type;?>" />
                             </div>
                         </div>
                         <div class="form-group">
@@ -78,7 +60,7 @@
                         <div class="form-group">
                             <label class="col-md-3 control-label"></label>
                             <div class="col-md-9">
-                                <button type="submit" class="btn btn-sm btn-success"> Save</button>
+                                <button type="submit" class="btn btn-sm btn-success"> Update</button>
                             </div>
                         </div>
                     </form>
@@ -97,20 +79,27 @@
  <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
 <script type="text/javascript">
-    document.forms('bonus').elements('id_salary_payment').value=<?php echo $bonus->id_salary_payment;?>
-    document.forms('bonus').elements('id_salary_bonus_type').value=<?php echo $bonus->id_salary_payment;?>
     $(document).ready(function () {
-        var availableTags = <?php
+        var availableTags =[<?php
                                     foreach ($salary_payment as $payment) {
-                                        $data = explode('","',$payment->amount_salary_payment);
-                                       echo $data;
+                                        $data = $payment->id_salary_payment;
+                                       echo  json_encode($data).',' ;
                                     }
-                                    ?>;
+                                    ?>];
 
         $("#payment").autocomplete({
         source: availableTags
-//                });
-                ? >
+                });
+        var bonus =[<?php
+                                    foreach ($salary_bonus as $bonus) {
+                                        $data = $bonus->name_salary_bonus_type;
+                                       echo  json_encode($data).',' ;
+                                    }
+                                    ?>];
+
+        $("#bonus_type").autocomplete({
+        source: bonus
+                });
     });
 
 </script>

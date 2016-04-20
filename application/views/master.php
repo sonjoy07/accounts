@@ -129,12 +129,13 @@
                         </li>
                         <li class="has-sub">
                             <a href="javascript:;">
-                                <span class="badge pull-right">10</span>
-                                <i class="fa fa-inbox"></i> 
-                                <span>Email</span>
+                                <!--<span class="badge pull-right">10</span>-->
+                                <b class="caret pull-right"></b>
+                                <i class="fa fa-users"></i> 
+                                <span>Employee</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="email_inbox.html">Inbox v1</a></li>
+                                <li><a href="email_inbox.html">Add Employee</a></li>
                                 <li><a href="email_inbox_v2.html">Inbox v2</a></li>
                                 <li><a href="email_compose.html">Compose</a></li>
                                 <li><a href="email_detail.html">Detail</a></li>
@@ -274,6 +275,8 @@
                 //search payment
                 
                 
+                
+                
     });
         </script>
         <script>
@@ -299,6 +302,11 @@
                         // e.stopPropagation; // stop the click from bubbling
                         //$(this).closest('ul').find('.active').removeClass('active');
                         $(this).parent().addClass('active');
+                        
+                        
+                        
+//                        test
+            
                     });
 //alert(name);
                 //

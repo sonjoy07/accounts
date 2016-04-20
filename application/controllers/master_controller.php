@@ -72,7 +72,7 @@ class Master_Controller extends CI_Controller {
         $data['issue_salary_payment'] = date('y-m-d',strtotime($this->input->post('issue_salary_payment')));
         $data['date_salary_payment'] = date('y-m-d',strtotime($this->input->post('date_salary_payment')));
         $data['amount_salary_payment'] = $this->input->post('amount_salary_payment');
-        $this->master_model->update_info('salary_payment',$data,$salary_id);
+        $this->master_model->update_info('salary_payment',$data,'update_salary_amount',$salary_id);
         
         $sdata = array();
         $sdata['message'] = '<div class = "alert alert-success"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Your Data is successfully Updated!!</p></div>';
@@ -128,7 +128,7 @@ class Master_Controller extends CI_Controller {
         $bonus_type = $this->input->post('id_salary_bonus_type');
         $data['name_salary_bonus_type'] = $this->input->post('name_salary_bonus_type');
         $data['description_salary_bonus_type'] = $this->input->post('description_salary_bonus_type');
-        $this->master_model->save_info('salary_bonus_type',$data);
+        $this->master_model->update_info('salary_bonus_type',$data,'id_salary_bonus_type',$bonus_type);
         
         $sdata = array();
         $sdata['message'] = '<div class = "alert alert-success"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Your Data is successfully Saved</p></div>';
@@ -164,6 +164,8 @@ class Master_Controller extends CI_Controller {
     public function edit_salary_bonus($bonus_id){
         $data = array();
         $data['title'] = "Accounts|Salary Bonus";
+        $data['salary_payment'] = $this->master_model->select_all('salary_payment');
+        $data['salary_bonus'] = $this->master_model->select_all('salary_bonus_type');
         $data['edit_bonus'] = $this->master_model->edit_info('salary_bonus',$bonus_id,'id_salary_bonus');
         $data['main_content'] = $this->load->view('salary/update_salary_bonus',$data,true);
         $this->load->view('master',$data);
@@ -172,7 +174,7 @@ class Master_Controller extends CI_Controller {
      public function save_bonus(){
         $data = array();
         $data['id_salary_bonus_type'] = $this->input->post('id_salary_bonus_type');
-        $data['id_salary_bonus'] = $this->input->post('id_salary_bonus');
+        $data['id_salary_payment'] = $this->input->post('id_salary_payment');
         $data['amount_salary_bonus'] = $this->input->post('amount_salary_bonus');
         $this->master_model->save_info('salary_bonus',$data);
         
@@ -185,14 +187,14 @@ class Master_Controller extends CI_Controller {
         $data = array();
         $id_bonus = $this->input->post('id_salary_bonus');
         $data['id_salary_bonus_type'] = $this->input->post('id_salary_bonus_type');
-        $data['id_salary_bonus'] = $this->input->post('id_salary_bonus');
+        $data['id_salary_payment'] = $this->input->post('id_salary_payment');
         $data['amount_salary_bonus'] = $this->input->post('amount_salary_bonus');
-        $this->master_model->update_info('salary_bonus',$data,$id_bonus);
+        $this->master_model->update_info('salary_bonus',$data,'id_salary_bonus',$id_bonus);
         
         $sdata = array();
         $sdata['message'] = '<div class = "alert alert-success"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Your Data is successfully UPdated!!</p></div>';
         $this->session->set_userdata($sdata);
-        redirect('master_controller/edit_salary_bonus'.$id_bonus);
+        redirect('master_controller/edit_salary_bonus/'.$id_bonus);
     }
     
      public function delete_salary_bonus_by_bonus_id($bonus_id) {
@@ -243,7 +245,7 @@ class Master_Controller extends CI_Controller {
         $data['amount_given_salary_advance'] = $this->input->post('amount_given_salary_advance');
         $data['amount_paid_salary_advance'] = $this->input->post('amount_paid_salary_advance');
         $data['date_given_salary_advance'] = date('y-m-d',strtotime($this->input->post('date_given_salary_advance')));
-        $this->master_model->update_info('salary_advance',$data,$id_advance);
+        $this->master_model->update_info('salary_advance',$data,'id_salary_advance',$id_advance);
         
         $sdata = array();
         $sdata['message'] = '<div class = "alert alert-success"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Your Data is successfully Saved</p></div>';
@@ -301,7 +303,7 @@ class Master_Controller extends CI_Controller {
         $data['id_salary_advance'] = $this->input->post('id_salary_advance');
         $data['paid_amount_salary_advance_payment'] = $this->input->post('paid_amount_salary_advance_payment');
         $data['payemnt_date_salary_advance_payment'] = date('y-m-d',strtotime($this->input->post('payemnt_date_salary_advance_payment')));
-        $this->master_model->update_info('salary_advance_payment',$data,$id_advance_payment);
+        $this->master_model->update_info('salary_advance_payment',$data,'id_salary_advance_payment',$id_advance_payment);
         
         $sdata = array();
         $sdata['message'] = '<div class = "alert alert-success"><button type = "button" class = "close" data-dismiss = "alert"><i class = " fa fa-times"></i></button><p><strong><i class = "ace-icon fa fa-check"></i></strong> Your Data is successfully Saved</p></div>';
@@ -312,6 +314,15 @@ class Master_Controller extends CI_Controller {
     public function delete_salary_advance_payment_by_advance_id($advance_id) {
         $this->master_model->delete_salary_info('salary_advance_payment',$advance_id);
         redirect('master_controller/salary_advance_payment_list');
+    }
+    
+    
+    //Employee
+    public function employee(){
+        $data = array();
+        $data['title'] = "Accounts| Employee";
+        $data['main_content'] = $this->load->view('employee',$data,true);
+        $this->load->view('master',$data);
     }
 }
 

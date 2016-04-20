@@ -18,8 +18,8 @@ class Master_Model extends CI_Model {
         $this->db->insert($tbl_name,$data);
     }
     
-    public function update_info($tbl_name,$data,$salary_id){
-        $this->db->where('id_salary_amount',$salary_id);        
+    public function update_info($tbl_name,$data,$id_name,$salary_id){
+        $this->db->where($id_name,$salary_id);        
         $this->db->update($tbl_name,$data);
     }
     
