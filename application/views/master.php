@@ -10,6 +10,14 @@
         <meta content="" name="description" />
         <meta content="" name="author" />
 
+
+        <!-- ================== BEGIN GROCERY CRUD  ================== -->
+        <?php foreach ($css_files as $file): ?>
+            <link type="text/css" rel="stylesheet" href="<?php echo $file; ?>" />
+        <?php endforeach; ?>
+        <link href="<?php echo base_url(); ?>assets/grocery_crud/themes/flexigrid/css/flexigrid.css" rel="stylesheet" />
+        <!-- ================== END GROCERY CRUD ================== -->
+
         <!-- ================== BEGIN BASE CSS STYLE ================== -->
         <link href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <link href="<?php echo base_url(); ?>assets/plugins/jquery-ui/themes/base/minified/jquery-ui.min.css" rel="stylesheet" />
@@ -30,6 +38,8 @@
         <link href="<?php echo base_url(); ?>assets/plugins/morris/morris.css" rel="stylesheet" />
 
         <!-- ================== END PAGE LEVEL CSS STYLE ================== -->
+
+
 
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="<?php echo base_url(); ?>assets/plugins/pace/pace.min.js"></script>
@@ -135,7 +145,7 @@
                                 <span>Employee</span>
                             </a>
                             <ul class="sub-menu">
-                                <li><a href="email_inbox.html">Add Employee</a></li>
+                                <li><a href="<?php echo base_url(); ?>master_controller/employee_list">Add Employee</a></li>
                                 <li><a href="email_inbox_v2.html">Inbox v2</a></li>
                                 <li><a href="email_compose.html">Compose</a></li>
                                 <li><a href="email_detail.html">Detail</a></li>
@@ -149,8 +159,19 @@
             <div class="sidebar-bg"></div>
             <!-- end #sidebar -->
 
-            <!-- begin #content -->
-            <?php echo $main_content; ?>
+            <div id="content" class="content">
+                <!-- begin breadcrumb -->
+                <ol class="breadcrumb pull-right">
+                    <li><a href="javascript:;">Home</a></li>
+                    <li class="active"><?php echo $heading;?></li>
+                </ol>
+                <!-- end breadcrumb -->
+                <!-- begin page-header -->
+                <h1 class="page-header"><?php echo $heading;?> <small><?php echo $heading;?></small></h1>
+
+                <!-- begin #content -->
+                <?php echo $main_content; ?>
+            </div>
 
             <!-- begin theme-panel -->
             <div class="theme-panel">
@@ -234,13 +255,19 @@
             <!-- end scroll to top btn -->
         </div>
         <!-- end page container -->
-       
+
 
         <!-- ================== BEGIN BASE JS ================== -->
         <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery-1.9.1.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/jquery/jquery-migrate-1.1.0.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/jquery-ui/ui/minified/jquery-ui.min.js"></script>
         <script src="<?php echo base_url(); ?>assets/plugins/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- ================== BEGIN GROCERY CRUD  ================== -->
+        <?php foreach ($js_files as $file): ?>
+            <script src="<?php echo $file; ?>"></script>
+        <?php endforeach; ?>
+        <!-- ================== END GROCERY CRUD ================== -->
 
         <!--[if lt IE 9]>
                 <script src="<?php echo base_url(); ?>assets/crossbrowserjs/html5shiv.js"></script>
@@ -266,18 +293,18 @@
 
         <script>
             $(document).ready(function () {
-               // var name ="sonjoy";
+                // var name ="sonjoy";
                 App.init();
                 //DashboardV2.init();
-               
+
 //               Datepicker
                 $('.datepicker').datepicker();
                 //search payment
-                
-                
-                
-                
-    });
+
+
+
+
+            });
         </script>
         <script>
             (function (i, s, o, g, r, a, m) {
@@ -302,18 +329,18 @@
                         // e.stopPropagation; // stop the click from bubbling
                         //$(this).closest('ul').find('.active').removeClass('active');
                         $(this).parent().addClass('active');
-                        
-                        
-                        
+
+
+
 //                        test
-            
+
                     });
 //alert(name);
-                //
+            //
 //                    
 //                
 //            });
-        
+
         </script>
     </body>
 </html>

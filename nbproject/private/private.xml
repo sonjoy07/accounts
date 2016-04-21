@@ -4,10 +4,8 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/E:/xampp2/htdocs/accounts/application/views/master.php</file>
-            <file>file:/E:/xampp2/htdocs/accounts/application/views/salary_advance_payment.php</file>
+            <file>file:/E:/xampp2/htdocs/accounts/application/views/employee.php</file>
             <file>file:/E:/xampp2/htdocs/accounts/application/controllers/master_controller.php</file>
-            <file>file:/E:/xampp2/htdocs/accounts/application/views/salary_advance_payment_list.php</file>
-            <file>file:/E:/xampp2/htdocs/accounts/application/views/update_advance_payment.php</file>
         </group>
     </open-files>
 </project-private>
